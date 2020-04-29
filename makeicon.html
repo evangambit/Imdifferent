@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- Simple script that generates the icon for this extension -->
+<html>
+<head>
+<title>foo</title>
+<style>
+#textInput {
+	width: 20em;
+	height: 20em;
+}
+</style>
+</head>
+<body>
+<canvas id='cvs' style='border:solid black 1px;'></canvas>
+<script>
+window.onload = () => {
+	cvs.width = 256;
+	cvs.height = 256;
+	let c = cvs.getContext('2d');
+
+	c.fillRect(0, 0, 256, 256);
+
+	c.beginPath();
+	c.fillStyle = 'red';
+	c.arc(118, 118, 48, 0, 6.28, false);
+	c.fill();
+
+	c.globalCompositeOperation = 'difference';
+	c.beginPath();
+	// c.arc(138, 118, 48, 0, 6.28, false);
+	c.fillRect(98, 113, 96, 96);
+	c.fill();
+};
+</script>
+</body>
+</html>
