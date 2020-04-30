@@ -60,11 +60,12 @@ function imdifferenter() {
     if (target.nodeName === 'CANVAS' || target.nodeName === 'IMG') {
       if (isKeyDown.a) {
         left = target;
+        compare();
       }
       if (isKeyDown.s) {
         right = target;
+        compare();
       }
-      compare();
     }
   });
 
