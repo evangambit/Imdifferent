@@ -16,13 +16,14 @@ function imdifferenter() {
       popup.style.position = 'fixed';
       popup.style.cursor = 'pointer';
       popup.style.border = 'solid red 1px';
+      popup.style.zIndex = 9999;
       popup.style.left = 0;
       popup.style.top = 0;
       document.body.appendChild(popup);
     }
 
-    const maxWidth = 384;
-    const maxHeight = 384;
+    const maxWidth = window.innerWidth * 0.75;
+    const maxHeight = window.innerHeight * 0.75;
 
     let lw = Math.max(left.width, left.naturalWidth);
     let rw = Math.max(right.width, right.naturalWidth);
@@ -40,13 +41,18 @@ function imdifferenter() {
     popup.style.display = 'block';
 
     let c = popup.getContext('2d');
+    c.save();
     c.drawImage(left, 0, 0, lw, lh, 0, 0, lw * leftScale, lh * leftScale);
     c.globalCompositeOperation = 'difference';
     c.drawImage(right, 0, 0, rw, rh, 0, 0, rw * rightScale, rh * rightScale);
+    c.globalCompositeOperation = 'source-over';
+    c.filter = 'brightness(200%)';
+    c.drawImage(popup, 0, 0);
+    c.restore();
   }
 
   window.addEventListener('click', (e) => {
-    let target = e.target;
+    let target = e.path[0];
     if (target === popup) {
       popup.style.display = 'none';
       return;
