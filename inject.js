@@ -16,6 +16,8 @@ function imdifferenter() {
       popup.style.position = 'fixed';
       popup.style.cursor = 'pointer';
       popup.style.border = 'solid red 1px';
+      popup.style.left = 0;
+      popup.style.top = 0;
       document.body.appendChild(popup);
     }
 
